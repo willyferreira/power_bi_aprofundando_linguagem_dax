@@ -1,4 +1,4 @@
-## Curso Alura | Power BI: Aprofundando na linguagem DAX | (Curso Alura)
+## Em andamento - Curso Alura | Power BI: Aprofundando na linguagem DAX | (Curso Alura)
 
 O curso teve como ensinamentos os seguintes assuntos:
 
@@ -20,5 +20,16 @@ Nesse repositório, há também um notebook em Python onde realizei a análise e
 Para auxílio na criação de medidas, foi utilizada a função **RELATED** que faz a "busca" de uma informação em uma outra tabela. No exemplo abaixo, buscamos a informação sobre a Categoria do livro na tabela *registro_livros_marketing* e a incluimos na tabela *registro_notas_logistica* por meio da criação de uma coluna calculada.
 
 ```
-#Categoria = RELATED(registro_livros_marketing[Categoria])
+Categoria = RELATED(registro_livros_marketing[Categoria])
+```
 
+#### Combinando funções
+
+A quantidade de vendas estava registrada apenas na tabela *registro_livros_marketing*. Para levar a informação para a outra tabela, foi utilizada a combinação de funções e utilização de variáveis para armazenar os resultados. 
+
+```
+Quantidade vendida Logistica = 
+VAR ID_ATUAL = 'registro_notas_logistica'[ID_Produto] -- Variável com o ID do produto
+VAR TABELA_IDS = FILTER('registro_notas_logistica', registro_notas_logistica[ID_Produto] = ID_ATUAL) -- Cria uma tabela filtrando pelo ID do produto
+RETURN COUNTROWS(TABELA_IDS) -- Conta a quantidade de linhas da tabela filtrada
+```
